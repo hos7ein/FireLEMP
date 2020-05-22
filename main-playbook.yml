@@ -1,1 +1,5 @@
- 
+- hosts: FireLEMP-server
+  remote_user: root
+  roles:
+  - install-packages
+  - nginx
