@@ -6,7 +6,7 @@
     owner: root
     group: root
     mode: 0775
-    #recurse: yes
+    recurse: yes
 
 - name: Creates directory for OPcache config file
   file:
@@ -15,7 +15,7 @@
     owner: root
     group: root
     mode: 0775
-    #recurse: yes
+    recurse: yes
 
 - name: Creates directory for php-fpm config file
   file:
@@ -24,7 +24,7 @@
     owner: root
     group: root
     mode: 0775
-    #recurse: yes
+    recurse: yes
 
 - name: Copy template php.ini config file
   template:
