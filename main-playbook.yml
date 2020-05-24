@@ -3,4 +3,5 @@
   roles:
   - install-packages
   - mariadb
+  - redis
   - nginx
