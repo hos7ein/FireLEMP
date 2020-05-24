@@ -25,3 +25,12 @@
     group: root
     mode: 0775
     recurse: yes
+
+- name: Copy template my.cnf MariaDB config file
+  template:
+    src: my.cnf.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/mariadb/conf.d/my.cnf"
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes
