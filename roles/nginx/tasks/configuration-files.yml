@@ -1,7 +1,7 @@
 ---
 - name: Creates directory for PHP config file
   file:
-    path: "{{ FireLEMP_vol }}/FireLEMP/php"
+    path: "{{ FireLEMP_vol }}/FireLEMP/nginx/php"
     state: directory
     owner: root
     group: root
@@ -10,7 +10,7 @@
 
 - name: Creates directory for OPcache config file
   file:
-    path: "{{ FireLEMP_vol }}/FireLEMP/opcache"
+    path: "{{ FireLEMP_vol }}/FireLEMP/nginx/opcache"
     state: directory
     owner: root
     group: root
@@ -19,7 +19,7 @@
 
 - name: Creates directory for php-fpm config file
   file:
-    path: "{{ FireLEMP_vol }}/FireLEMP/php-fpm"
+    path: "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm"
     state: directory
     owner: root
     group: root
@@ -29,7 +29,7 @@
 - name: Copy template php.ini config file
   template:
     src: php.ini.j2
-    dest: "{{ FireLEMP_vol }}/FireLEMP/php/php.ini"
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/php/php.ini"
     owner: root
     group: root
     mode: 0755
@@ -38,7 +38,7 @@
 - name: Copy template 10-opcache.ini config file
   template:
     src: 10-opcache.ini.j2
-    dest: "{{ FireLEMP_vol }}/FireLEMP/opcache/10-opcache.ini"
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/opcache/10-opcache.ini"
     owner: root
     group: root
     mode: 0755
@@ -47,7 +47,7 @@
 - name: Copy template www.conf config file
   template:
     src: www.conf.j2
-    dest: "{{ FireLEMP_vol }}/FireLEMP/php-fpm/www.conf"
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm/www.conf"
     owner: root
     group: root
     mode: 0755
