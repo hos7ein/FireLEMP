@@ -1,0 +1,13 @@
+---
+- name: Deploy Redis docker container
+  docker_container:
+        name: redis
+        hostname: redis
+        image: docker.io/redis:latest
+        command: redis-server /usr/local/etc/redis/redis.conf
+        network:
+          - name: FireLEMP-net
+        volumes:
+          - "{{ FireLEMP_vol }}/FireLEMP/redis/data:/data"
+          - "{{ FireLEMP_vol }}/FireLEMP/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf"
+        restart_policy: always

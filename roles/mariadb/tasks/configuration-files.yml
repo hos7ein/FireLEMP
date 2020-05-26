@@ -1,0 +1,36 @@
+---
+- name: Creates directory for MariaDB data
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/mariadb/data"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Creates directory for MariaDB config file
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/mariadb/conf.d"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Creates directory for MariaDB log files
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/mariadb/log"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Copy template my.cnf MariaDB config file
+  template:
+    src: my.cnf.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/mariadb/conf.d/my.cnf"
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes

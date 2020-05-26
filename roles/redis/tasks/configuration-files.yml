@@ -1,0 +1,27 @@
+---
+- name: Creates directory for Redis data
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/redis/data"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Creates directory for Redis config file
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/redis/conf"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Copy template redis.conf Redis config file
+  template:
+    src: redis.conf.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/redis/conf/redis.conf"
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes

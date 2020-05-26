@@ -1,0 +1,15 @@
+---
+- name: Deploy MariaDB docker container
+  docker_container:
+        name: mariadb
+        hostname: mariadb
+        image: docker.io/mariadb:latest
+        network:
+          - name: FireLEMP-net
+        volumes:
+          - "{{ FireLEMP_vol }}/FireLEMP/mariadb/data:/var/lib/mysql"
+          - "{{ FireLEMP_vol }}/FireLEMP/mariadb/conf.d:/etc/mysql/conf.d"
+          - "{{ FireLEMP_vol }}/FireLEMP/mariadb/log:/var/log/mysql"
+        restart_policy: always
+        env:
+          MYSQL_ROOT_PASSWORD: "{{ MYSQL_ROOT_PASSWORD }}"
