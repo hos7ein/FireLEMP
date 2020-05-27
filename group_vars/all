@@ -11,3 +11,7 @@ FireLEMP_vol: /var
 
 ###################### MariaDB Variables ####################
 MYSQL_ROOT_PASSWORD: my-secret-pw
+
+
+##################### phpMyAdmin Variables ##################
+phpmyadmin_port: 1080
