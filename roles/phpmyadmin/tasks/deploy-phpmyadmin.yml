@@ -1,0 +1,13 @@
+---
+- name: Deploy phpMyAdmin docker container
+  docker_container:
+        name: phpmyadmin
+        hostname: phpmyadmin
+        image: docker.io/phpmyadmin/phpmyadmin:latest
+        network:
+          - name: FireLEMP-net
+        published_ports:
+          - "{{ phpmyadmin_port }}:80"
+        restart_policy: always
+        env:
+          PMA_HOST : mariadb

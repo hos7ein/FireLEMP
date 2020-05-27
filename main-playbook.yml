@@ -3,5 +3,6 @@
   roles:
   - install-packages
   - mariadb
+  - phpmyadmin
   - redis
   - nginx
