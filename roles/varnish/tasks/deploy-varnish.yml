@@ -1,0 +1,15 @@
+---
+- name: Deploy Varnish docker container
+  docker_container:
+        name: varnish
+        hostname: varnish
+        image: docker.io/varnish:stable
+        network:
+          - name: FireLEMP-net
+        published_ports:
+          - 80:80
+        volumes:
+          - "{{ FireLEMP_vol }}/FireLEMP/varnish/conf/default.vcl:/etc/varnish/default.vcl:ro"
+        restart_policy: always
+        tmpfs:
+          - /var/lib/varnish:exec

@@ -6,3 +6,4 @@
   - phpmyadmin
   - redis
   - nginx
+  - varnish
