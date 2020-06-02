@@ -4,8 +4,10 @@
         name: phpmyadmin
         hostname: phpmyadmin
         image: docker.io/phpmyadmin/phpmyadmin:latest
-        network:
+        networks_cli_compatible: yes
+        networks:
           - name: FireLEMP-net
+        purge_networks: yes
         published_ports:
           - "{{ phpmyadmin_port }}:80"
         restart_policy: always
