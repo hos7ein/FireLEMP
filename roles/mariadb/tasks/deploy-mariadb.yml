@@ -4,8 +4,10 @@
         name: mariadb
         hostname: mariadb
         image: docker.io/mariadb:latest
-        network:
+        networks_cli_compatible: yes
+        networks:
           - name: FireLEMP-net
+        purge_networks: yes  
         volumes:
           - "{{ FireLEMP_vol }}/FireLEMP/mariadb/data:/var/lib/mysql"
           - "{{ FireLEMP_vol }}/FireLEMP/mariadb/conf.d:/etc/mysql/conf.d"
