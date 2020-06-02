@@ -4,8 +4,10 @@
         name: varnish
         hostname: varnish
         image: docker.io/varnish:stable
-        network:
+        networks_cli_compatible: yes
+        networks:
           - name: FireLEMP-net
+        purge_networks: yes
         published_ports:
           - 80:80
         volumes:
