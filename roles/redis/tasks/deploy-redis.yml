@@ -5,8 +5,10 @@
         hostname: redis
         image: docker.io/redis:latest
         command: redis-server /usr/local/etc/redis/redis.conf
-        network:
+        networks_cli_compatible: yes
+        networks:
           - name: FireLEMP-net
+        purge_networks: yes
         volumes:
           - "{{ FireLEMP_vol }}/FireLEMP/redis/data:/data"
           - "{{ FireLEMP_vol }}/FireLEMP/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf"
