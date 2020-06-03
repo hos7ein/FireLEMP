@@ -1,0 +1,12 @@
+---
+
+
+
+
+
+- name: Create a network with custom IPAM config
+  docker_network:
+    name: FireLEMP-net
+    ipam_config:
+      - subnet: 172.70.0.0/16
+        gateway: 172.70.0.1
