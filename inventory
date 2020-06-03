@@ -1,2 +1,2 @@
-[FireLEMP-server]
-192.168.56.21 node_name=FireLEMP 
+[FireLEMP_server]
+192.168.56.21 node_name=FireLEMP

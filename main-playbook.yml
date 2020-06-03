@@ -1,4 +1,4 @@
-- hosts: FireLEMP-server
+- hosts: FireLEMP_server
   remote_user: root
   roles:
   - install-packages
@@ -7,3 +7,4 @@
   - redis
   - nginx
   - varnish
+  - prometheus
