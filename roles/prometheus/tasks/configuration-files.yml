@@ -1,0 +1,44 @@
+---
+- name: Create prometheus group
+  group:
+     name: prometheus
+     state: present
+     gid: 7007
+
+
+- name : Create new user for prometheus and add to prometheus group
+  user:
+    name: prometheus
+    group: prometheus
+    shell: /bin/false
+    uid: 7007
+    home: "{{ FireLEMP_vol }}/FireLEMP/prometheus"
+    append: yes
+
+
+- name: Creates directory for Prometheus config file
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/prometheus/conf"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+
+
+- name: Creates directory for Prometheus data
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/prometheus/data"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+
+
+- name: Copy template prometheus.yml config file
+  template:
+    src: prometheus.yml.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/prometheus/conf/prometheus.yml"
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+    backup: yes

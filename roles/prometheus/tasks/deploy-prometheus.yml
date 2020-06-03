@@ -1,0 +1,15 @@
+---
+- name: Deploy Prometheus docker container
+  docker_container:
+        name: prometheus
+        hostname: prometheus
+        image: docker.io/prom/prometheus:latest
+        networks_cli_compatible: yes
+        networks:
+          - name: FireLEMP-net
+        purge_networks: yes
+        user: '7007'
+        volumes:
+          - "{{ FireLEMP_vol }}/FireLEMP/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml"
+          - "{{ FireLEMP_vol }}/FireLEMP/prometheus/data:/prometheus"
+        restart_policy: always
