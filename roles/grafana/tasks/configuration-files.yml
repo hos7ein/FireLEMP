@@ -1,0 +1,37 @@
+---
+- name: Creates directory for Grafana data
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/grafana/data"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Creates directory for Grafana config files
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/grafana/conf"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Creates directory for Grafana log files
+  file:
+    path: "{{ FireLEMP_vol }}/FireLEMP/grafana/log"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+
+- name: Copy template grafana.ini Grafana config file
+  template:
+    src: grafana.ini.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/grafana/conf/grafana.ini"
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes

@@ -1,0 +1,18 @@
+---
+- name: Deploy Grafana docker container
+  docker_container:
+        name: grafana
+        hostname: grafana
+        image: docker.io/grafana/grafana:latest
+        networks_cli_compatible: yes
+        networks:
+          - name: FireLEMP-net
+        purge_networks: yes
+        published_ports:
+          - "{{ grafana_port }}:3000"
+        user: root
+        volumes:
+          - "{{ FireLEMP_vol }}/FireLEMP/grafana/conf/grafana.ini:/etc/grafana/grafana.ini"
+          - "{{ FireLEMP_vol }}/FireLEMP/grafana/data:/var/lib/grafana"
+          - "{{ FireLEMP_vol }}/FireLEMP/grafana/log:/var/log/grafana"
+        restart_policy: always
