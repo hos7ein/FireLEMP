@@ -12,4 +12,4 @@
           - "{{ phpmyadmin_port }}:80"
         restart_policy: always
         env:
-          PMA_HOST : mariadb
+          PMA_HOST: mariadb
