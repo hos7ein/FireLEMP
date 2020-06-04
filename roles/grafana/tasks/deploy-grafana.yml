@@ -16,3 +16,5 @@
           - "{{ FireLEMP_vol }}/FireLEMP/grafana/data:/var/lib/grafana"
           - "{{ FireLEMP_vol }}/FireLEMP/grafana/log:/var/log/grafana"
         restart_policy: always
+        env:
+          GF_SECURITY_ADMIN_PASSWORD: "{{ grafana_password }}"
