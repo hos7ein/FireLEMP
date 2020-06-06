@@ -1,0 +1,19 @@
+---
+- name: Deploy Nginx docker container
+  docker_container:
+        name: nginx
+        hostname: nginx
+        image: docker.io/hos7ein/nginx_php-fpm:latest
+        networks_cli_compatible: yes
+        networks:
+          - name: FireLEMP-net
+        purge_networks: yes
+        volumes:
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/conf/nginx.conf:/etc/nginx/ngnix.conf"
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/conf/conf.d:/etc/nginx/conf.d"
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/public_html:/usr/share/nginx/html"
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/log:/var/log/nginx"
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/php/php.ini:/etc/php.ini"
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/opcache/10-opcache.ini:/etc/php.d/10-opcache.ini"
+          - "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm/www.conf:/etc/php-fpm.d/www.conf"
+        restart_policy: always
