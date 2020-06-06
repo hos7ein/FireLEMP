@@ -19,3 +19,7 @@ phpmyadmin_port: 1080
 ##################### Grafana Variables ##################
 grafana_port: 3000
 grafana_password: FireLEMP
+
+
+##################### Ngnix Variables ##################
+domain_name: example.com
