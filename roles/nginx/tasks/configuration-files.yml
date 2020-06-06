@@ -1,30 +1,20 @@
 ---
-- name: Creates directory for PHP config file
+- name: Create directory for Nginx and PHP
   file:
-    path: "{{ FireLEMP_vol }}/FireLEMP/nginx/php"
+    path: "{{ item }}"
     state: directory
     owner: root
     group: root
     mode: 0775
     recurse: yes
+  with_items:
+    - "{{ FireLEMP_vol }}/FireLEMP/nginx/php"
+    - "{{ FireLEMP_vol }}/FireLEMP/nginx/opcache"
+    - "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm"
+    - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/public_html"
+    - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/log"
+    - "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/conf/conf.d"
 
-- name: Creates directory for OPcache config file
-  file:
-    path: "{{ FireLEMP_vol }}/FireLEMP/nginx/opcache"
-    state: directory
-    owner: root
-    group: root
-    mode: 0775
-    recurse: yes
-
-- name: Creates directory for php-fpm config file
-  file:
-    path: "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm"
-    state: directory
-    owner: root
-    group: root
-    mode: 0775
-    recurse: yes
 
 - name: Copy template php.ini config file
   template:
@@ -35,20 +25,72 @@
     mode: 0755
     backup: yes
 
+
 - name: Copy template 10-opcache.ini config file
-  template:
-    src: 10-opcache.ini.j2
+  copy:
+    src: roles/nginx/files/10-opcache.ini
     dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/opcache/10-opcache.ini"
+    owner: root
+    group: root
+    mode: '0755'
+    backup: yes
+
+
+- name: Copy template www.conf config file
+  copy:
+    src: roles/nginx/files/www.conf
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm/www.conf"
+    owner: root
+    group: root
+    mode: '0755'
+    backup: yes
+
+
+- name: Copy template nginx.conf config file
+  template:
+    src: nginx.conf.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/conf/nginx.conf"
     owner: root
     group: root
     mode: 0755
     backup: yes
 
-- name: Copy template www.conf config file
+
+- name: Copy template example.com.conf.j2 Nginx vHost config file
   template:
-    src: www.conf.j2
-    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/php-fpm/www.conf"
+    src: example.com.conf.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/conf/conf.d/{{ domain_name }}.conf"
     owner: root
     group: root
     mode: 0755
     backup: yes
+
+
+- name: Copy template php-fpm.conf.j2 config file
+  template:
+    src: php-fpm.conf.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/conf/conf.d/php-fpm.conf"
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes
+
+
+- name: Copy template index.html file
+  template:
+    src: index.html.j2
+    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/public_html/index.html"
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes
+
+
+#- name: Copy template php file
+#  template:
+#    src: info.php.j2
+#    dest: "{{ FireLEMP_vol }}/FireLEMP/nginx/nginx/public_html/info.php"
+#    owner: root
+#    group: root
+#    mode: 0755
+#    backup: yes
