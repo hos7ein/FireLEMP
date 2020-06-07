@@ -1,5 +1,6 @@
 - hosts: FireLEMP_server
   remote_user: root
+  gather_facts: False
   roles:
   - install-packages
   - mariadb
