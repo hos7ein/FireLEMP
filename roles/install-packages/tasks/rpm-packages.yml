@@ -1,0 +1,66 @@
+---
+- name : install epel repo
+  dnf:
+    name:
+      - epel-release
+
+- name : install packages
+  dnf:
+    name:
+      - zip
+      - unzip
+      - mtr
+      - nload
+      - screen
+      - nmap
+      - rsync
+      #- glances
+      - htop
+      - nethogs
+      - nano
+      - wget
+      - net-tools
+      - open-vm-tools
+      - bash-completion
+      - kernel-devel
+      - kernel-headers
+      - hdparm
+      - iotop
+      - bind-utils
+      #- whois
+      - vim
+      - telnet
+      #- libselinux-python
+      - tcpdump
+      - xz
+      - git
+      - yum-utils
+      - lsof
+      - aria2
+      - psmisc
+      - python3-pip
+      - curl
+      - dnf-plugins-core
+    state: latest
+
+
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+
+
+
+# Install docker-ce
+- name: Download Docker repository file
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: '0644'
+
+- name: install docker-ce packages
+  shell: dnf install docker-ce --nobest -y
+
+
+- name: start and enable docker service
+  systemd: state=start enabled=yes name=docker
