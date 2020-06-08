@@ -2,7 +2,7 @@
   remote_user: root
   gather_facts: False
   roles:
-  - install-packages
+  - host-configuration
   - mariadb
   - phpmyadmin
   - redis
