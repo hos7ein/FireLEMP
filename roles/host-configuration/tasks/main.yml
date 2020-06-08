@@ -10,6 +10,7 @@
 #tasks on CentOS or RHEL distribution
 - name: Install or update packages on RPM Linux distribution
   include: 'rpm-packages.yml'
+  include: 'firewalld.yml'
   include: 'rpm-docker-installation.yml'
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
