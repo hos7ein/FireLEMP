@@ -52,7 +52,7 @@
 
 
 # Install docker-ce
-- name: Download Docker repository file
+- name: Download official Docker repository file
   get_url:
     url: https://download.docker.com/linux/centos/docker-ce.repo
     dest: /etc/yum.repos.d/docker-ce.repo
