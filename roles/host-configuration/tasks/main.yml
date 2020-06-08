@@ -10,8 +10,27 @@
 #tasks on CentOS or RHEL distribution
 - name: Install or update packages on RPM Linux distribution
   include: 'rpm-packages.yml'
+  include: 'rpm-docker-installation.yml'
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 
 
-#- include: 'docker-installation.yml'
+#-
+
+
+
+
+
+
+
+
+
+
+
+
+- name: Create a network with custom IPAM config
+  docker_network:
+    name: FireLEMP-net
+    ipam_config:
+      - subnet: 172.70.0.0/16
+        gateway: 172.70.0.1
