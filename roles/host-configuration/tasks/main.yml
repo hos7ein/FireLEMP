@@ -11,7 +11,6 @@
 - name: Install or update packages on RPM Linux distribution
   include: 'rpm-packages.yml'
   include: 'firewalld.yml'
-  include: 'hostname.yml'
   include: 'rpm-docker-installation.yml'
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
@@ -21,6 +20,7 @@
 
 
 
+- include: 'hostname.yml'
 
 
 
