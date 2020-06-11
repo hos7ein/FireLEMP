@@ -41,6 +41,7 @@
       - python3-pip
       - curl
       - dnf-plugins-core
+      - figlet
     state: latest
 
 
