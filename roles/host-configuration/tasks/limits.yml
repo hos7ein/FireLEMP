@@ -1,0 +1,9 @@
+---
+#configure limits.conf file
+- name: configure /etc/security/limits.conf file
+  lineinfile: dest=/etc/security/limits.conf
+              line='{{item}}'
+  with_items:
+    - root soft nofile 1000000
+    - root hard nofile 1000000
+    
