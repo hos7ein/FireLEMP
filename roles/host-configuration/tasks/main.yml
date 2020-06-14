@@ -8,7 +8,7 @@
 
 
 #tasks on CentOS or RHEL distribution
-- name: Install or update packages on RPM Linux distribution
+- name: Tasks on RPM Linux distribution
   include: 'chrony.yml'
   include: 'rpm-packages.yml'
   include: 'firewalld.yml'
@@ -18,9 +18,10 @@
 
 
 #task on Debian or Ubuntu distribution
-- name: Install python 3 and pip3 packages
+- name: Tasks on DEB Linux distribution
   include: 'ntp.yml'
   include: 'deb-packages.yml'
+  include: 'deb-docker-installation.yml'
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 
@@ -29,6 +30,7 @@
 - include: 'motd.yml'
 - include: 'sysctl.yml'
 - include: 'limits.yml'
+- include: 'docker-compose.yml'
 
 
 
