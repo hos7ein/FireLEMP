@@ -23,3 +23,7 @@ grafana_password: FireLEMP
 
 ##################### Ngnix Variables ##################
 domain_name: example.com
+
+
+##################### Docker compose Variables ##################
+docker_compose_version: 1.26.0
