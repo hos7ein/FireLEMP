@@ -21,7 +21,7 @@ grafana_port: 3000
 grafana_password: FireLEMP
 
 
-##################### Ngnix Variables ##################
+##################### Nginx Variables ##################
 domain_name: example.com
 
 
